@@ -11,7 +11,22 @@ module.exports = {
       .click('#top-news')
       .pause(150)
       .waitForElementVisible('div[class="article__info"]')
-      .pause(150)
+      .saveScreenshot(`${config.imgpath(browser)}top.png`)
+      .pause(1000)
+      .end();
+  },
+  'Eesti Ekspress search': function(browser) {
+    browser
+    .resizeWindow(1920, 1080)
+      .url('https://ekspress.delfi.ee/')
+      .waitForElementVisible('body')
+      .assert.title('Eesti Ekspress')
+      .setValue('.header-search__input', ['veerpalu', browser.Keys.ENTER])
+      .pause(1200)
+      .saveScreenshot(`${config.imgpath(browser)}search.png`)
+      .pause(1000)
+      .click('.headline')
+      .pause(1000)
       .end();
   }
 };
